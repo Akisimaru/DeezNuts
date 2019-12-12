@@ -1,0 +1,30 @@
+consumer_key        = 'w4AfFbBqK9iBMRaId4shoIjZP'
+consumer_secret     = 'dfQaw5zCJIEQKB7EbYzIHwPtVvcWGeeZ6j54fLsgsNv278wdt3'
+access_token        = '912087083552002051-Imi7SzB2EuZ10eWSgIJzoyxkaNlS1GH'
+access_token_secret = 'xouxf9OMDtsSxbqAJRx35aNK06lkD7Nzv5cZJbtnwkmrH'
+
+============================================================
+
+from twython import Twython
+
+from auth import (
+    consumer_key,
+    consumer_secret,
+    access_token,
+    access_token_secret
+)
+
+twitter = Twython(
+    consumer_key,
+    consumer_secret,
+    access_token,
+    access_token_secret
+)
+
+message = "Bruh"
+
+image = open('image.jpg', 'rb')
+response = twitter.upload_media(media=image)
+media_id = [response['media_id']]
+twitter.update_status(status=message, media_ids=media_id)
+print("Tweeted: " + message)
